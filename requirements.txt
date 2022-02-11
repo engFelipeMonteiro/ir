@@ -58,3 +58,4 @@ wcwidth==0.1.7
 webencodings==0.5.1
 yahooquery==2.2.14
 zipp==0.6.0
+tabula-py
