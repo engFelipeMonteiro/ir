@@ -75,3 +75,36 @@ etf, python, crawler, webscraping, calculadora ir
 # (algumas) fontes para consulta utilizadas 
 - https://br.advfn.com/investimentos/futuros/imposto-de-renda
 - https://www.arenadopavini.com.br/acoes-na-arena/receita-permite-compensar-perdas-de-etf-com-ganhos-de-acoes
+
+## debug tools
+- csv to table: https://codesandbox.io/s/csv-import-example-hw3nex
+
+## TODO LIST
+`iniciando leitura de arquivo (tests/data/2020_12.pdf), pagina 6
+Diferença no calculo das taxas
+taxa proporcional somada: -1753.380000000000000000000000taxa via nota: -1753.380000000000000000000000
+Diferença no calculo das taxas
+taxa proporcional somada: -1580.920000000000000000000000taxa via nota: -1580.920000000000000000000000
+Diferença no calculo das taxas
+taxa proporcional somada: -1677.150000000000000000000000taxa via nota: -1677.150000000000000000000000
+Diferença no calculo das taxas
+taxa proporcional somada: 0.0taxa via nota: 0.0`
+
+----------
+import math
+import pandas as pd
+import numpy as np
+df = pd.DataFrame(np.random.randn(8, 4),index=dates, columns=['A', 'B', 'C', 'D'])
+df2 = pd.DataFrame(np.random.randn(8, 4),index=dates, columns=['E', 'F', 'G', 'H'])
+df.combine(df2, lambda x,y: x if math.isnan(y.iloc[0]) else y)
+
+>>> df.combine(df2, lambda x,y: x if math.isnan(y.iloc[0]) else y)
+                   A         B         C         D         E         F         G         H
+2000-01-01  0.572291 -0.376415  0.096499 -0.501556 -0.609520  1.366202 -1.097944 -0.069581
+2000-01-02 -0.745446 -0.734310  0.026820  0.310755  0.370891 -0.324463 -1.495252 -0.488626
+2000-01-03 -0.008442 -0.818752  0.775730  1.138191 -1.217939 -1.625876  0.304386 -1.467019
+2000-01-04  0.646485  0.356571 -0.437486  0.446287 -0.240879  0.802476  0.207504  0.875761
+2000-01-05 -0.038022 -0.549357  0.853325 -0.672601 -1.015454  0.072294 -0.128029 -1.013214
+2000-01-06  0.523978  1.758997 -0.889266 -0.818600 -0.627424  2.013190 -0.209348  0.498383
+2000-01-07 -0.717477  0.876361 -0.348383  0.471164  0.046945  1.532670  0.277389 -1.134186
+2000-01-08  1.249751 -0.009308 -0.024992 -0.890212 -1.022445 -0.124705 -1.790870  0.081974

@@ -22,3 +22,13 @@ def upload_dropbox_file(file_from, file_to):
         dbx._session.close()
     except:
         pass
+
+
+def dropbox_connect():
+    """Create a connection to Dropbox."""
+
+    try:
+        dbx = dropbox.Dropbox(os.environ['DROPBOX_API_KEY'])
+    except AuthError as e:
+        print('Error connecting to Dropbox with access token: ' + str(e))
+    return dbx

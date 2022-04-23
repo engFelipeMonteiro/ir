@@ -1,7 +1,7 @@
 import datetime
 import os
 
-from src.dropbox_files import OPERATIONS_FILEPATH, upload_dropbox_file, download_dropbox_file
+from src.dropbox_files import OPERATIONS_FILEPATH, upload_dropbox_file, download_dropbox_file, dropbox_connect
 
 
 class TestDropbox():
@@ -22,3 +22,4 @@ class TestDropbox():
             file.write("...test..." + str(datetime.datetime.now()))
 
         upload_dropbox_file(os.path.abspath(TEMP_TEST_FILE), TEMP_TEST_FILE_UPLOADED)
+

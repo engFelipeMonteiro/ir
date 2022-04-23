@@ -34,19 +34,25 @@ def main(raw_args):
         do_calculo_ir(args.numero_de_meses)
         return
 
-    do_busca_trades_e_faz_merge_operacoes()
+    do_busca_trades_e_faz_merge_operacoes(method='cei')
     do_calculo_ir(args.numero_de_meses)
 
 
-def do_busca_trades_e_faz_merge_operacoes():
-    from src.crawler_cei import busca_trades
-    df_cei = busca_trades(os.environ['CPF'], os.environ['SENHA_CEI'])
+def do_busca_trades_e_faz_merge_operacoes(method='cei'):
+    """
+        Get new operations and merge with old from dropbox
+    """
+    def get_cei_df():
+        from src.crawler_cei import busca_trades
+        df_cei = busca_trades(os.environ['CPF'], os.environ['SENHA_CEI'])
+        return df_cei
+    trades_map = {'cei': get_cei_df}
 
     from src.dropbox_files import download_dropbox_file
     download_dropbox_file()
-
-    df = get_operations()
-    df = merge_operacoes(df, df_cei)
+    new_df = trades_map[method]()
+    df = get_operations() # download file from dropbox and load as DataFrame
+    df = merge_operacoes(df, new_df)
     df_to_csv(df, OPERATIONS_FILEPATH)
 
     upload_dropbox_file(OPERATIONS_FILEPATH, os.environ['DROPBOX_FILE_LOCATION'])
@@ -64,7 +70,7 @@ def do_calculo_ir(numero_de_meses):
 
     from src.stuff import calcula_custodia
 
-    calcula_custodia(df)
+    custodia_hoje = calcula_custodia(df)
     calculo_ir = CalculoIr(df=df)
     calculo_ir.calcula()
 

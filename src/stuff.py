@@ -153,6 +153,7 @@ def merge_operacoes(df, other_df):
     assert other_df is not None
 
     if not len(df) and not len(other_df):
+        # return empty df if wrong df in both args
         return pd.DataFrame(columns=colunas_obrigatorias())
 
     df = df.copy()
