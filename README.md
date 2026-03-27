@@ -1,5 +1,21 @@
 # ir - Projeto de calculo de Imposto de Renda em operacoes na bovespa automaticamente
 
+## resumo do projeto (atualizado)
+- **Objetivo:** Automatizar a coleta de operações (CEI/B3 e notas em PDF de corretora) e o cálculo de IR para renda variável, com geração de relatório.
+- **Stack:** Python (automação e regra de negócio), Pandas (tratamento/cálculo), Selenium + BeautifulSoup (coleta web), tabula-py + PyPDF2 (extração de PDF), FastAPI (API simples em desenvolvimento).
+- **Diferenciais:** Pipeline automatizado de ponta a ponta (coleta, merge de operações, cálculo de imposto, relatório), suporte a múltiplos tipos de ativos e compensação de prejuízo acumulado.
+- **UX:** Uso principal via CLI + envio de relatório por e-mail; há base de API Web com FastAPI, mas sem frontend React versionado neste repositório.
+- **Made with AI:** Não há evidência de integração com IA/LLM no código atual.
+- **Start Date:** 2022-04-23 (primeiro commit identificado no histórico local).
+- **Status Atual:** Projeto funcional para fluxo principal, com testes e CI configurados, e itens de evolução já listados no README (TODO).
+
+### sugestões para melhorar ainda mais este resumo
+- Adicionar um diagrama simples do fluxo: **Coleta (CEI/PDF) -> CSV/Dropbox -> Cálculo IR -> Relatório**.
+- Incluir uma tabela curta com **tipos de ativos suportados** e limitações atuais (ex.: day trade).
+- Mostrar um exemplo real de saída (trecho do relatório) com 2-3 métricas-chave.
+- Destacar requisitos de execução em produção (variáveis de ambiente + agendamento mensal).
+- Separar “status atual” em **estável hoje** vs **próximos passos** para facilitar leitura de investidores/colaboradores.
+
 ## o que se propoe a fazer
  - Automaticamente busca todos as suas operacoes na bolsa no site do canal eletronico do investidor (CEI) (https://cei.b3.com.br/)
  - Apos buscar os trades no CEI, salva tudo em um arquivo csv no dropbox da sua conta
