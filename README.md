@@ -1,4 +1,4 @@
-# ir - Projeto de calculo de Imposto de Renda em operacoes na bovespa automaticamente
+# ir - Projeto de cálculo de Imposto de Renda em operações na bovespa automaticamente
 
 ## Resumo do Projeto (Atualizado)
 - **Objetivo:** Automatizar a coleta de operações (CEI/B3 e notas em PDF de corretora) e o cálculo de IR para renda variável, com geração de relatório.
